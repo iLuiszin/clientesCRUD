@@ -22,6 +22,25 @@ const clientController = {
 
     return res.status(404).send('Cliente não encontrado')
   },
+
+  createClient: (req, res) => {
+    const { nome } = req.body
+
+    if (!nome) {
+      return res.status(400).send('Nome não informado')
+    }
+
+    const id = clientes[clientes.length - 1].id + 1
+
+    const cliente = {
+      id,
+      nome,
+    }
+
+    clientes.push(cliente)
+
+    return res.status(201).send(cliente)
+  },
 }
 
 module.exports = clientController
