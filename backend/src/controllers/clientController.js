@@ -1,9 +1,24 @@
 const clientes = [
-  { id: 1, nome: 'Vitor' },
-  { id: 2, nome: 'João' },
-  { id: 3, nome: 'Maria' },
-  { id: 4, nome: 'Pedro' },
-  { id: 5, nome: 'Luís' },
+  {
+    id: 1,
+    nome: 'Vitor',
+    email: 'teste@example.com',
+    telefone: '61 923456789',
+  },
+  { id: 2, nome: 'João', email: 'teste@example.com', telefone: '61 923456789' },
+  {
+    id: 3,
+    nome: 'Maria',
+    email: 'teste@example.com',
+    telefone: '61 923456789',
+  },
+  {
+    id: 4,
+    nome: 'Pedro',
+    email: 'teste@example.com',
+    telefone: '61 923456789',
+  },
+  { id: 5, nome: 'Luís', email: 'teste@example.com', telefone: '61 923456789' },
 ]
 
 const findClientById = (id) => {
@@ -30,7 +45,7 @@ const clientController = {
   },
 
   createClient: (req, res) => {
-    const { nome } = req.body
+    const { nome, email, telefone } = req.body
 
     if (!nome) {
       return res.status(400).send({
@@ -43,6 +58,8 @@ const clientController = {
     const cliente = {
       id,
       nome,
+      email,
+      telefone,
     }
 
     clientes.push(cliente)
@@ -52,7 +69,7 @@ const clientController = {
 
   updateClient: (req, res) => {
     const { id } = req.params
-    const { nome } = req.body
+    const { nome, email, telefone } = req.body
 
     if (!nome) {
       return res.status(400).send({
@@ -69,6 +86,8 @@ const clientController = {
     }
 
     cliente.nome = nome
+    cliente.email = email
+    cliente.telefone = telefone
 
     return res.status(200).send(cliente)
   },
